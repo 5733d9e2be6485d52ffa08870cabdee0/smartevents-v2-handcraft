@@ -9,6 +9,6 @@ spec:
   data: '{"message": "Hello world!"}'
   sink:
     ref:
-      apiVersion: v1
-      kind: Service
-      name: event-display
+      apiVersion: eventing.knative.dev/v1
+      kind: Broker
+      name: test-broker
