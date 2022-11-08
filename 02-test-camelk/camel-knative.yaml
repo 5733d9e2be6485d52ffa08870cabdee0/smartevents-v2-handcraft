@@ -9,6 +9,8 @@ spec:
         parameters:
           period: 1000
         steps:
-          - log: "Logging: ${body}"
-          - to: "knative:event/market.btc.usdt"
+          - log: "sending event to default broker"
+          - set-body:
+              simple: "{date:now} Example message body"
+          - to: "knative:event/market"
 
