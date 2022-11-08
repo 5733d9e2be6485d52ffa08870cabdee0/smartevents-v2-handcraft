@@ -1,4 +1,4 @@
 apiVersion: eventing.knative.dev/v1
 kind: Broker
 metadata:
-  namespace: test-camelk
+  name: default

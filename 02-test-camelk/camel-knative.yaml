@@ -2,10 +2,13 @@ apiVersion: camel.apache.org/v1
 kind: Integration
 metadata:
   name: test-integration
-  namespace: test-camelk
 spec:
   flows:
     - from:
-        uri: knative:event
+        uri: "timer:update"
+        parameters:
+          period: 1000
         steps:
-          - to: log:info?showAll=true&multiLine=true
+          - log: "Logging: ${body}"
+          - to: "knative:event/market.btc.usdt"
+
