@@ -1,0 +1,14 @@
+apiVersion: sources.knative.dev/v1
+kind: PingSource
+metadata:
+  name: ping-source-inmemory
+  namespace: test-camelk
+spec:
+  schedule: "*/1 * * * *"
+  contentType: "application/json"
+  data: '{"message": "Hello world!"}'
+  sink:
+    ref:
+      apiVersion: eventing.knative.dev/v1
+      kind: Broker
+      name: test-broker
