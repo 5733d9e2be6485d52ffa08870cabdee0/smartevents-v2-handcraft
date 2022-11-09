@@ -31,13 +31,11 @@ kubectl apply -f imc-channel.yaml
 
 kubectl apply -f broker.yaml
 
+kubectl apply -f pingsource-source.yaml
+
 kubectl apply -f camel-knative.yaml
 
-kubectl apply -f event-display-sink.yaml
 
-kubectl apply -f trigger.yaml
-
-kubectl logs --tail=25 -l app=event-display
 ```
 
 
