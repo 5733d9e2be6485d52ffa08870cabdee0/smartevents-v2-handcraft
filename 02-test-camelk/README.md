@@ -33,7 +33,9 @@ kubectl apply -f broker.yaml
 
 kubectl apply -f camel-knative.yaml
 
-kubectl -n test-camelk logs --tail=25 -l app=event-display
+kubectl apply -f event-display-sink.yaml
+
+kubectl logs --tail=25 -l app=event-display
 ```
 
 

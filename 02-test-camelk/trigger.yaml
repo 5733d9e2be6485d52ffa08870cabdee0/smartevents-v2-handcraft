@@ -1,0 +1,12 @@
+`apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: test-trigger-to-display
+spec:
+  broker: default
+  subscriber:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+    uri: /market

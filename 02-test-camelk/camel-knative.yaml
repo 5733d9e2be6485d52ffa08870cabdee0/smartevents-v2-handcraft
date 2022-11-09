@@ -7,10 +7,10 @@ spec:
     - from:
         uri: "timer:update"
         parameters:
-          period: 1000
+          period: 5000
         steps:
           - log: "sending event to default broker"
           - set-body:
-              simple: "{date:now} Example message body"
+              simple: "${date:now} Example message body"
           - to: "knative:event/market"
 
