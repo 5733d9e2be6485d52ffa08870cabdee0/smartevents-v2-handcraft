@@ -1,0 +1,14 @@
+apiVersion: camel.apache.org/v1
+kind: Integration
+metadata:
+  name: test-integration
+spec:
+  flows:
+    - from:
+        uri: "knative:event?name=this-is-a-different-broker-name"
+        steps:
+          - unmarshal:
+              json: { }
+          - log: "receiving event from a broker name this-is-a-different-broker-name ${body}"
+          - to: log:info?showAll=true&multiLine=true
+
