@@ -1,6 +1,8 @@
 A very basic example of an installation of KNative event using the InMemory channel 
 with a simple Kamel integration using everything in default (namespace and broker name)
-filtering for only PingSource events
+trying to get every kind of event from the broker
+This is identical to 03-camelk-native-from but without the trigger filtering. 
+Check the trigger created and you'll see there's no filtering
 
 ```
 minikube addons enable registry
