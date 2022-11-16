@@ -4,7 +4,8 @@ trying to get every kind of event from the broker
 Instead of having a PingSource source we accept CloudEvents from the HTTP Broker
 
 ```
-minikube addons enable registry
+
+minikube  start --vm-driver=hyperkit --cpus=4 --memory=8192
 
 kubectl apply -f https://github.com/knative/serving/releases/download/knative-v1.8.0/serving-crds.yaml
 
@@ -25,6 +26,7 @@ kubectl apply -f https://github.com/knative/eventing/releases/download/knative-v
 
 kubectl apply -f https://github.com/knative/eventing/releases/download/knative-v1.8.0/mt-channel-broker.yaml
 
+minikube  addons enable registry
 kamel install
 
 kn broker create default
@@ -37,12 +39,11 @@ kubectl apply -f pingsource-source.yaml
 
 kubectl apply -f camel-knative.yaml
 
-yes | istioctl manifest apply --set profile=default --set values.gateways.istio-ingressgateway.type="ClusterIP"
 
-minikube addons enable ingress -p craft
-minikube addons enable ingress-dns -p craft
+minikube  addons enable ingress 
+minikube  addons enable ingress-dns 
 
-kubectl apply -f broker-virtual-service.yaml
+kubectl apply -f ingress.yaml
 
 
 ```

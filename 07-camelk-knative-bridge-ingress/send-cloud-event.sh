@@ -10,7 +10,6 @@ export CLOUD_EVENT='{
     "id": "9aeb0fdf-c01e-0131-0922-9eb54906e209",
     "time": "2019-11-18T15:13:39.4589254Z",
     "subject": "blobServices/default/containers/{storage-container}/blobs/{new-file}",
-    "dataschema": "#",
     "data": {
         "myMessage" : '"\"$MESSAGE\""'
     }
@@ -20,7 +19,7 @@ export CLOUD_EVENT='{
 MINIKUBE_IP=$(minikube ip -p craft)
 echo "Minikube IP: $MINIKUBE_IP"
 
-BROKER_URL="http://$MINIKUBE_IP/"
+BROKER_URL="http://$MINIKUBE_IP/default/default"
 
 echo "Sending cloud event to $BROKER_URL"
 
