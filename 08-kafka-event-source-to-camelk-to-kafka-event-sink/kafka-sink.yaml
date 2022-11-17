@@ -1,0 +1,14 @@
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: kafka-sink
+  namespace: default
+spec:
+  topic: 'SET_ME'
+  bootstrapServers:
+    - 'rhose-loca-c--o--mmk-hbcp-irvga.bf2.kafka.rhcloud.com:443'
+  auth:
+    secret:
+      ref:
+        name: kafka-sink-auth

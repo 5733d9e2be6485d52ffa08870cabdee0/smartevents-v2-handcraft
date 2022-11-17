@@ -6,7 +6,7 @@ metadata:
 spec:
   flows:
     - from:
-        uri: "knative:event/dev.knative.sources.ping"
+        uri: "knative:event/dev.knative.kafka.event"
         steps:
           - unmarshal:
                json: { }
