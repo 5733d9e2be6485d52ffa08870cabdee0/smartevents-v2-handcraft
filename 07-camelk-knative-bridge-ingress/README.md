@@ -35,10 +35,7 @@ kubectl apply -f config-br-defaults.yaml
 
 kubectl apply -f imc-channel.yaml
 
-kubectl apply -f pingsource-source.yaml
-
 kubectl apply -f camel-knative.yaml
-
 
 minikube  addons enable ingress 
 minikube  addons enable ingress-dns 

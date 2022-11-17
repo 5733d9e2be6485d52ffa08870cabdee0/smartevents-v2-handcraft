@@ -16,7 +16,7 @@ export CLOUD_EVENT='{
 }'
 
 
-MINIKUBE_IP=$(minikube ip -p craft)
+MINIKUBE_IP=$(minikube ip)
 echo "Minikube IP: $MINIKUBE_IP"
 
 BROKER_URL="http://$MINIKUBE_IP/default/default"
