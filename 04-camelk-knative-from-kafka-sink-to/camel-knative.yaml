@@ -10,7 +10,7 @@ spec:
         steps:
           - unmarshal:
                json: { }
-          - log: "receiving event from the default broker ${body}"
+          - log: "receiving event from the default broker of type dev.knative.source.ping ${body}"
           - marshal:
                json: { }
           - log: "Sending the event to the KafkaSink..."
