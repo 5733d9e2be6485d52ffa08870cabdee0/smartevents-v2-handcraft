@@ -1,0 +1,17 @@
+apiVersion: camel.apache.org/v1
+kind: Integration
+metadata:
+  name: test-integration
+  namespace: default
+spec:
+  flows:
+    - from:
+        uri: "knative:event/dev.knative.kafka.event"
+        steps:
+          - unmarshal:
+               json: { }
+          - log: "receiving event from the default broker ${body}"
+          - marshal:
+               json: { }
+          - log: "Sending the event to the KafkaSink..."
+          - to: "knative:endpoint/kafka-sink?apiVersion=eventing.knative.dev/v1alpha1&kind=KafkaSink"
