@@ -1,9 +1,9 @@
-For macOS create the cluster in this way (otherwise the ingress won't work)
+# For macOS create the cluster in this way (otherwise the ingress won't work)
 
 ```shell
 minikube  start --vm-driver=hyperkit --cpus=4 --memory=8192
 ```
-KNative Install
+# KNative Install
 ```shell
 kubectl apply -f https://github.com/knative/serving/releases/download/knative-v1.8.0/serving-crds.yaml
 
@@ -25,22 +25,23 @@ kubectl apply -f https://github.com/knative/eventing/releases/download/knative-v
 kubectl apply -f https://github.com/knative/eventing/releases/download/knative-v1.8.0/mt-channel-broker.yaml
 ```
 
-Kamel 
+# Kamel 
 
-```
+```shell
 minikube  addons enable registry
 kamel install
 ```
 
-kn broker create default
+# In memory channel configuration 
 
-kubectl apply -f config-br-defaults.yaml
-
-kubectl apply -f imc-channel.yaml
-
-kubectl apply -f camel-knative.yaml
-
+```shell
+kubectl apply -f 01-inmemory-broker/config-br-defaults.yaml
+kubectl apply -f 01-inmemory-broker/imc-channel.yaml
 ```
+
+# Ingress
+
+```shell
 minikube  addons enable ingress
 minikube  addons enable ingress-dns
 ``` 

@@ -17,10 +17,10 @@ export CLOUD_EVENT='{
 
 
 MINIKUBE_IP=$(minikube ip)
-echo "Minikube IP: $MINIKUBE_IP"
+# echo "Minikube IP: $MINIKUBE_IP"
 
 BROKER_URL="http://$MINIKUBE_IP/default/default"
 
-echo "Sending cloud event to $BROKER_URL"
+echo "Sending cloud event $MESSAGE to $BROKER_URL"
 
-curl -v -X POST -H 'Accept: application/json' -H 'Content-Type: application/cloudevents+json' -d "$CLOUD_EVENT" "$BROKER_URL"
+curl -s X POST -H 'Accept: application/json' -H 'Content-Type: application/cloudevents+json' -d "$CLOUD_EVENT" "$BROKER_URL"

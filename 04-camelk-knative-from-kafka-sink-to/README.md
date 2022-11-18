@@ -1,5 +1,5 @@
 A very basic example of an installation of KNative event using the InMemory channel
-with a simple Kamel integration usin everything in default (namespace and broker name)
+with a simple Kamel integration using everything in default (namespace and broker name)
 
 ## Use the RHOAS CLI to Create a Kafka Topic
 
