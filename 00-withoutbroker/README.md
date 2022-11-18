@@ -1,4 +1,4 @@
-The simplest example of KNative Event, with just a simple source and a sink
+The simplest example of KNative Event, with just a simple source and a sink, [Blog Post explaining delivery methods](https://medium.com/google-cloud/knative-eventing-delivery-methods-79d4ebe30a68)
 
 ```
 kubectl apply -f https://github.com/knative/eventing/releases/download/knative-v1.8.0/eventing-crds.yaml

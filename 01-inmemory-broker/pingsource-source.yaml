@@ -2,7 +2,6 @@ apiVersion: sources.knative.dev/v1
 kind: PingSource
 metadata:
   name: ping-source-inmemory
-  namespace: inmemory-broker
 spec:
   schedule: "*/1 * * * *"
   contentType: "application/json"

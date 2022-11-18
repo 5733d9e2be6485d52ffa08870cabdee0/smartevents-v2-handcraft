@@ -16,8 +16,6 @@ kubectl apply -f config-br-defaults.yaml
 
 kubectl apply -f imc-channel.yaml
 
-kubectl create namespace inmemory-broker
-
 kubectl apply -f broker.yaml
 
 kubectl apply -f event-display-sink.yaml
@@ -26,12 +24,10 @@ kubectl apply -f trigger.yaml
 
 kubectl apply -f pingsource-source.yaml
 
-kubectl -n inmemory-broker logs --tail=25 -l app=event-display
+kubectl logs --tail=25 -l app=event-display
 
 
-
-
-kubectl delete pingsources.sources.knative.dev ping-source-inmemory -n inmemory-broker
+kubectl delete pingsources.sources.knative.dev ping-source-inmemory 
 
 kubectl delete service.serving.knative.dev
 ```

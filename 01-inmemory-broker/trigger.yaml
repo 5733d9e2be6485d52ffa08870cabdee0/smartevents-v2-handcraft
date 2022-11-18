@@ -1,7 +1,6 @@
 apiVersion: eventing.knative.dev/v1
 kind: Trigger
 metadata:
-  namespace: inmemory-broker
   name: test-trigger
 spec:
   broker: test-broker

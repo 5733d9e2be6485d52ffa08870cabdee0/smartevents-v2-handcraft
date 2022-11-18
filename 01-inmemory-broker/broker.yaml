@@ -1,5 +1,4 @@
 apiVersion: eventing.knative.dev/v1
 kind: Broker
 metadata:
-  namespace: inmemory-broker
   name: test-broker
