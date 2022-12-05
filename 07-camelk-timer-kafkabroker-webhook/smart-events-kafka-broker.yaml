@@ -1,0 +1,40 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: kafka-broker-config
+  namespace: smart-events
+data:
+  bootstrap.servers: 'rhose-loca-c--o--mmk-hbcp-irvga.bf2.kafka.rhcloud.com:443'
+  default.topic.partitions: '1'
+  default.topic.replication.factor: '1'
+  auth.secret.ref.name: kafka-broker-secret
+  
+---
+
+kind: Secret
+apiVersion: v1
+metadata:
+  name: kafka-broker-secret
+  namespace: smart-events
+data:
+  password: a1NiNnhCSVRCcFRaRFlRdFY2Umw1cVdISHBNbFRCY24=
+  protocol: U0FTTF9TU0w=
+  sasl.mechanism: UExBSU4=
+  user: YmZjMTFiZDItN2UxZS00YzE0LTk4NWQtOTlmMDUzNjA5M2Ji
+
+---
+
+apiVersion: eventing.knative.dev/v1
+kind: Broker
+metadata:
+  annotations:
+    eventing.knative.dev/broker.class: Kafka
+    kafka.eventing.knative.dev/external.topic: vajain_topic
+  name: smart-events-kafka-broker
+  namespace: smart-events
+spec:
+  config:
+    apiVersion: v1
+    kind: ConfigMap
+    name: kafka-broker-config
+    namespace: smart-events

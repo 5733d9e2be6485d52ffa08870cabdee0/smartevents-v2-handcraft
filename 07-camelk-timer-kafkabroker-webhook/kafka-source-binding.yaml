@@ -1,0 +1,17 @@
+apiVersion: camel.apache.org/v1alpha1
+kind: KameletBinding
+metadata:
+  name: kafka-source-binding
+spec:
+  source:
+    ref:
+      kind: Kamelet
+      apiVersion: camel.apache.org/v1alpha1
+      name: kafka-source
+    properties:
+      bootstrapServers: 'rhose-loca-c--o--mmk-hbcp-irvga.bf2.kafka.rhcloud.com:443'
+      password: kSb6xBITBpTZDYQtV6Rl5qWHHpMlTBcn
+      topic: vajain_topic
+      user: bfc11bd2-7e1e-4c14-985d-99f0536093bb
+  sink:
+    uri: https://webhook.site/52eb447e-8142-4801-8a9e-fd58d5894365

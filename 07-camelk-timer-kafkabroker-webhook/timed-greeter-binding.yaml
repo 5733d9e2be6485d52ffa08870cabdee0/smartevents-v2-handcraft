@@ -1,0 +1,20 @@
+apiVersion: camel.apache.org/v1alpha1
+kind: KameletBinding
+metadata:
+  name: timed-greeter-binding-knative-broker
+spec:
+  source:
+    ref: 
+      kind: Kamelet
+      apiVersion: camel.apache.org/v1alpha1
+      name: timed-greeter
+    properties:
+      period: 5000
+      message: To Knative broker directly
+  sink:
+    ref:
+      kind: Broker
+      apiVersion: eventing.knative.dev/v1
+      name: smart-events-kafka-broker
+    properties:
+      type: type    
