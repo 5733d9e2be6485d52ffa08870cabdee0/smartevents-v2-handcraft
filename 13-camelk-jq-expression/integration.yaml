@@ -1,0 +1,45 @@
+apiVersion: camel.apache.org/v1
+kind: Integration
+metadata:
+  name: jq-kafka
+  namespace: default
+spec:
+  flows:
+    - from:
+        uri: "kafka:inbound"
+        parameters:
+          brokers: 'rhose-loca-c--o--mmk-hbcp-irvga.bf2.kafka.rhcloud.com:443'
+          security-protocol: 'SASL_SSL'
+          sasl-mechanism: 'PLAIN'
+          sasl-jaas-config: >-
+            org.apache.kafka.common.security.plain.PlainLoginModule required
+            username='clientId'
+            password='secret';
+        steps:
+          - to: 'log:info'
+          - choice:
+              when:
+                - jq: '.name == "Vaibhav"'
+                  steps:
+                    - to:
+                        uri: "kafka:outbound"
+                        parameters:
+                          brokers: 'rhose-loca-c--o--mmk-hbcp-irvga.bf2.kafka.rhcloud.com:443'
+                          security-protocol: 'SASL_SSL'
+                          sasl-mechanism: 'PLAIN'
+                          sasl-jaas-config: >-
+                            org.apache.kafka.common.security.plain.PlainLoginModule required
+                            username='clientId'
+                            password='secret';
+                - jq: '.name == "Souvik"'
+                  steps:
+                    - to:
+                        uri: "kafka:outbound2"
+                        parameters:
+                          brokers: 'rhose-loca-c--o--mmk-hbcp-irvga.bf2.kafka.rhcloud.com:443'
+                          security-protocol: 'SASL_SSL'
+                          sasl-mechanism: 'PLAIN'
+                          sasl-jaas-config: >-
+                            org.apache.kafka.common.security.plain.PlainLoginModule required
+                            username='clientId'
+                            password='secret';
