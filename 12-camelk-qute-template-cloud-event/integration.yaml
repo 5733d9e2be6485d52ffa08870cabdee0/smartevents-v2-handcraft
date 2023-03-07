@@ -1,0 +1,41 @@
+apiVersion: camel.apache.org/v1
+kind: Integration
+metadata:
+  name: qute-kafka
+  namespace: default
+spec:
+  flows:
+    - from:
+        uri: "kafka:inbound"
+        parameters:
+          brokers: 'rhose-loca-c--o--mmk-hbcp-irvga.bf2.kafka.rhcloud.com:443'
+          security-protocol: 'SASL_SSL'
+          sasl-mechanism: 'PLAIN'
+          sasl-jaas-config: >-
+            org.apache.kafka.common.security.plain.PlainLoginModule required
+            username='clientId'
+            password='secret';
+        steps:
+          - to: 'log:info'
+          - unmarshal:
+              json:
+                library: 'jackson'
+                unmarshal-type: 'java.util.Map'
+          - to: 'log:info'
+          - set-header:
+              name: 'CamelQuteTemplate'
+              constant: '{#if body.data.context.display_name??}
+<{body.data.environment_url}{#if body.data.bundle == "openshift" and body.data.application == "advisor"}/openshift/insights/advisor/clusters/{body.data.context.display_name}{#else}/insights/inventory/{#if body.data.context.inventory_id??}{body.data.context.inventory_id}{#else}?hostname_or_id={body.data.context.display_name}{/if}{/if}|{body.data.context.display_name}> triggered {body.data.events.size()} event{#if body.data.events.size() > 1}s{/if}{#else}
+{body.data.events.size()} event{#if body.data.events.size() > 1}s{/if} triggered{/if} from {body.data.bundle}/{body.data.application}. <{body.data.environment_url}/{#if body.data.bundle == "application-services" and body.data.application == "rhosak"}application-services/streams{#else}{#if body.data.bundle == "openshift"}openshift/{/if}insights/{body.data.application}{/if}|Open {body.data.application}>'
+          - to: 'qute:hello?allowTemplateFromHeader=true'
+          - to: 'log:info'
+          - to:
+              uri: "kafka:outbound"
+              parameters:
+                brokers: 'rhose-loca-c--o--mmk-hbcp-irvga.bf2.kafka.rhcloud.com:443'
+                security-protocol: 'SASL_SSL'
+                sasl-mechanism: 'PLAIN'
+                sasl-jaas-config: >-
+                  org.apache.kafka.common.security.plain.PlainLoginModule required
+                  username='clientId'
+                  password='secret';
